@@ -1,7 +1,6 @@
 {
-  "name": "static-site",
+  "name": "ultimate_readme_gen",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,6 +8,7 @@
   },
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "inquirer": "8.2.4"
   }

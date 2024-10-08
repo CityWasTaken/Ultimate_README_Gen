@@ -1,5 +1,5 @@
 // TODO: Include packages needed for this application
-import inquirer from "inquirer";
+import inquirer from "inquirer"
 import generateMarkdown from "./utils/generateMarkdown";
 import Choices from "inquirer/lib/objects/choices";
 
@@ -31,7 +31,7 @@ async function createReadme() {
             Choices: ['Yes', 'No']
         },
         {
-            message: 'What liscense is the project protected under?',
+            message: 'What license is the project protected under?',
             name: 'licenseType',
             type: 'list',
             Choices: ['MIT', 'Boost Software License 1.0', 'Apache License 2.0', 'None']
@@ -44,7 +44,7 @@ async function createReadme() {
 
 
 
-    const markdown = `
+    const data = `
 # ${readmeContent.projectName}
 - This project was created by ${readmeContent.userName}
 \n
@@ -62,25 +62,33 @@ ${readmeContent.contributions}
 ${readmeContent.licenseType}
 `;
 
+    // TODO: Create a function to write README file
+    function writeToFile() {
+        fs.writeFile('../README.md', data, (error) => {
+            if (error) {
+                return console.log('error');
+            }
+            
+            console.log('README file was created! DOPE!!')
+        });
+        
+    }
 
+
+    // TODO: Create a function to initialize app
+    // function init() {
+    //     // prompt the user to either create a README file or exit
+
+    //     // If the choose to create the file, then you prompt them with all the related questions
+
+    //     // Once you have the answerObj, you pass it to your generateMarkdown function
+
+    //     const createMarkdown = generateMarkdown();
+
+    //     writeToFile('README.md', markdown);
+
+    // }
 }
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
-
-// TODO: Create a function to initialize app
-function init() {
-    // prompt the user to either create a README file or exit
-
-    // If the choose to create the file, then you prompt them with all the related questions
-
-    // Once you have the answerObj, you pass it to your generateMarkdown function
-
-    const createMarkdown = generateMarkdown();
-
-    writeToFile('README.md', markdown);
-
-}
-
-// Function call to initialize app
-init();
+// // Function call to initialize app
+createReadme();
