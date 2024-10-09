@@ -1,3 +1,5 @@
+
+
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {}
@@ -11,10 +13,24 @@ function renderLicenseLink(license) {}
 function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(answerObj) {
-  return `# ${answerObj.title}
-License: ${renderLicenseBadge('MIT')}
-`;
+function generateMarkdown(readmeContent) {
+  return `
+  # ${readmeContent.projectName}
+  - This project was created by ${readmeContent.userName}
+  \n
+  ## Table of Contents
+  \n
+  ## Description
+  ${readmeContent.description}
+  ## Installation
+  ${readmeContent.installation}
+  ## Usage
+  ${readmeContent.usage}
+  ## Contributions
+  ${readmeContent.contributions}
+  ## License
+  ${readmeContent.licenseType}
+  `;
 }
 
 export default generateMarkdown;

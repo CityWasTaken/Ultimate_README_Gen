@@ -44,23 +44,8 @@ async function createReadme() {
 
 
 
-    const data = `
-# ${readmeContent.projectName}
-- This project was created by ${readmeContent.userName}
-\n
-## Table of Contents
-\n
-## Description
-${readmeContent.description}
-## Installation
-${readmeContent.installation}
-## Usage
-${readmeContent.usage}
-## Contributions
-${readmeContent.contributions}
-## License
-${readmeContent.licenseType}
-`;
+
+}
 
     // TODO: Create a function to write README file
     function writeToFile() {
@@ -68,27 +53,43 @@ ${readmeContent.licenseType}
             if (error) {
                 return console.log('error');
             }
-            
+
             console.log('README file was created! DOPE!!')
         });
-        
+
     }
 
 
-    // TODO: Create a function to initialize app
-    // function init() {
-    //     // prompt the user to either create a README file or exit
+// TODO: Create a function to initialize app
+// function init() {
+//     // prompt the user to either create a README file or exit
+async function mainMenu() {
+    // show an option to create a markdown file
+    const menuObj = await inquirer.prompt({
+        message: 'Please select an option',
+        name: 'menuChoice',
+        type: 'list',
+        choices: ['Create README File', 'Exit']
+    });
 
-    //     // If the choose to create the file, then you prompt them with all the related questions
-
-    //     // Once you have the answerObj, you pass it to your generateMarkdown function
-
-    //     const createMarkdown = generateMarkdown();
-
-    //     writeToFile('README.md', markdown);
-
-    // }
+    switch (menuObj.menuChoice) {
+        case 'Create README File':
+            await createReadme();
+            break;
+            mainMenu();
+        default:
+            console.log('\nThanks for using the README Generator! As you were!');
+    }
 }
+//     // If the choose to create the file, then you prompt them with all the related questions
+
+//     // Once you have the answerObj, you pass it to your generateMarkdown function {
+
+//     const createMarkdown = generateMarkdown();
+
+//     writeToFile('README.md', markdown);
+
+// }
 
 // // Function call to initialize app
 createReadme();
