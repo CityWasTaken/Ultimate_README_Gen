@@ -35,6 +35,14 @@ async function createReadme() {
             choices: ['Yes', 'No']
         },
         {
+            message: 'Whats your Github username?',
+            name: 'github',
+        },
+        {
+            message: 'What is your email address?',
+            name: 'email',
+        },
+        {
             message: 'What license is the project protected under?',
             name: 'licenseType',
             type: 'list',
@@ -50,19 +58,19 @@ async function createReadme() {
 
 
     // TODO: Create a function to write README file
-    function writeToFile(data) {
-        fs.writeFile('../README.md', data, (error) => {
+    function writeToFile() {
+        fs.writeFile('README.md', data, (error) => {
             if (error) {
                 return console.log('error');
             }
 
-            console.log('README file was created! DOPE!!')
         });
+        console.log('\nREADME file was created! DOPE!!')
 
     }
 
-    const markdown = generateMarkdown(readmeContent);
-    writeToFile(markdown);
+    const data = generateMarkdown(readmeContent);
+    writeToFile();
 
 }
 
@@ -72,7 +80,7 @@ async function mainMenu() {
     // prompt the user to either create a README file or exit
     // show an option to create a markdown file
     const menuObj = await inquirer.prompt({
-        message: `\n---------------\nThank you for choosing the ULTIMATE README GEN\n---------------\nPlease select an option`,
+        message: `\n---------------\nULTIMATE README GEN\n---------------\nPlease select an option`,
         name: 'menuChoice',
         type: 'list',
         choices: ['Create README File', 'Exit']
@@ -84,7 +92,7 @@ async function mainMenu() {
             mainMenu();
             break;
         default:
-            console.log('\nThanks for using the README Generator! As you were!');
+            console.log('\nThanks for using the ULTIMATE README Gen! As you were!');
     }
 }
 //     // If the choose to create the file, then you prompt them with all the related questions
