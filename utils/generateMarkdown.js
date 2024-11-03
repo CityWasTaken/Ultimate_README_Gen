@@ -73,8 +73,8 @@ function generateMarkdown(readmeContent) {
   \nEmail: ${readmeContent.email}
   ## License
   ${licenseSection}
-  ${licenseBadge}
-  ${licenseLink}
+  \n${licenseBadge}
+  \n${licenseLink}
   `;
 }
 

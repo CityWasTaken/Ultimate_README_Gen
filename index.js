@@ -65,7 +65,7 @@ async function createReadme() {
             }
 
         });
-        console.log('\nREADME file was created! DOPE!!')
+        console.log('\n------------------\nREADME file was created! DOPE!!\n------------------')
 
     }
 
@@ -92,7 +92,7 @@ async function mainMenu() {
             mainMenu();
             break;
         default:
-            console.log('\nThanks for using the ULTIMATE README Gen! As you were!');
+            console.log('\n------------------\nThanks for using the ULTIMATE README Gen! As you were!\n');
     }
 }
 //     // If the choose to create the file, then you prompt them with all the related questions
