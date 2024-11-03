@@ -26,6 +26,10 @@ function generateMarkdown(readmeContent) {
   ${readmeContent.installation}
   ## Usage
   ${readmeContent.usage}
+  ## Tests
+  \`\`\`bash
+  ${readmeContent.tests}
+  \`\`\`
   ## Contributions
   ${readmeContent.contributions}
   ## License

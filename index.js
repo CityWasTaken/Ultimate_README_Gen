@@ -1,9 +1,9 @@
 // TODO: Include packages needed for this application
+import fs from "fs";
 import inquirer from "inquirer"
-import generateMarkdown from "./utils/generateMarkdown";
-import Choices from "inquirer/lib/objects/choices";
+import generateMarkdown from "./utils/generateMarkdown.js";
+import Choices from "inquirer/lib/objects/choices.js";
 
-const fs = require('fs');
 
 // TODO: Create an array of questions for user input
 async function createReadme() {
@@ -14,7 +14,7 @@ async function createReadme() {
         },
         {
             message: 'How would you describe your project?',
-            nane: 'description'
+            name: 'description'
         },
         {
             message: 'How does the user install this project?',
@@ -25,19 +25,23 @@ async function createReadme() {
             name: 'usage'
         },
         {
+            message: 'What command would you type to run the test?',
+            name: 'tests',
+        },
+        {
             message: 'Were there any contributions?',
             name: 'contributions',
             type: 'list',
-            Choices: ['Yes', 'No']
+            choices: ['Yes', 'No']
         },
         {
             message: 'What license is the project protected under?',
             name: 'licenseType',
             type: 'list',
-            Choices: ['MIT', 'Boost Software License 1.0', 'Apache License 2.0', 'None']
+            choices: ['MIT', 'Boost Software License 1.0', 'Apache License 2.0', 'None']
         },
         {
-            message: 'Silly me! I almost forgot to ask; who do I have the pleasure of speaking with?',
+            message: 'Silly me! I almost forgot to ask; who do I have the pleasure of speaking with in case of questions?',
             name: 'userName'
         }
     ]);
@@ -45,10 +49,8 @@ async function createReadme() {
 
 
 
-}
-
     // TODO: Create a function to write README file
-    function writeToFile() {
+    function writeToFile(data) {
         fs.writeFile('../README.md', data, (error) => {
             if (error) {
                 return console.log('error');
@@ -59,14 +61,18 @@ async function createReadme() {
 
     }
 
+    const markdown = generateMarkdown(readmeContent);
+    writeToFile(markdown);
+
+}
+
 
 // TODO: Create a function to initialize app
-// function init() {
-//     // prompt the user to either create a README file or exit
 async function mainMenu() {
+    // prompt the user to either create a README file or exit
     // show an option to create a markdown file
     const menuObj = await inquirer.prompt({
-        message: 'Please select an option',
+        message: `\n---------------\nThank you for choosing the ULTIMATE README GEN\n---------------\nPlease select an option`,
         name: 'menuChoice',
         type: 'list',
         choices: ['Create README File', 'Exit']
@@ -75,8 +81,8 @@ async function mainMenu() {
     switch (menuObj.menuChoice) {
         case 'Create README File':
             await createReadme();
-            break;
             mainMenu();
+            break;
         default:
             console.log('\nThanks for using the README Generator! As you were!');
     }
@@ -92,4 +98,4 @@ async function mainMenu() {
 // }
 
 // // Function call to initialize app
-createReadme();
+mainMenu();
